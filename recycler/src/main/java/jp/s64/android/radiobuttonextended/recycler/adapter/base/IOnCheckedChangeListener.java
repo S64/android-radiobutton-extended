@@ -6,8 +6,8 @@ import android.widget.Checkable;
 /**
  * Created by shuma on 2017/04/11.
  */
-public interface IOnCheckChangedListener {
+public interface IOnCheckedChangeListener {
 
-    <V extends View & Checkable> void onCheckChanged(V checkable, boolean isChecked);
+    <V extends View & Checkable> void onCheckedChange(V checkable, boolean isChecked);
 
 }

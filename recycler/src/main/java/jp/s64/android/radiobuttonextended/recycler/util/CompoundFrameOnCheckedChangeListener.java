@@ -4,28 +4,28 @@ import android.view.View;
 import android.widget.Checkable;
 
 import jp.s64.android.radiobuttonextended.core.widget.CompoundFrameLayout;
-import jp.s64.android.radiobuttonextended.recycler.adapter.base.IOnCheckChangedListener;
+import jp.s64.android.radiobuttonextended.recycler.adapter.base.IOnCheckedChangeListener;
 
 /**
  * Created by shuma on 2017/04/11.
  */
 
-public class CompoundFrameOnCheckedChangeListener implements CompoundFrameLayout.OnCheckedChangeListener, IOnCheckChangedListener {
+public class CompoundFrameOnCheckedChangeListener implements CompoundFrameLayout.OnCheckedChangeListener, IOnCheckedChangeListener {
 
-    private final IOnCheckChangedListener mListener;
+    private final IOnCheckedChangeListener mListener;
 
-    public CompoundFrameOnCheckedChangeListener(IOnCheckChangedListener listener) {
+    public CompoundFrameOnCheckedChangeListener(IOnCheckedChangeListener listener) {
         mListener = listener;
     }
 
     @Override
     public void onCheckedChanged(CompoundFrameLayout compoundFrameLayout, boolean checked) {
-        onCheckChanged(compoundFrameLayout, checked);
+        onCheckedChange(compoundFrameLayout, checked);
     }
 
     @Override
-    public <V extends View & Checkable> void onCheckChanged(V checkable, boolean isChecked) {
-        mListener.onCheckChanged(checkable, isChecked);
+    public <V extends View & Checkable> void onCheckedChange(V checkable, boolean isChecked) {
+        mListener.onCheckedChange(checkable, isChecked);
     }
 
 }

@@ -1,46 +1,43 @@
-package jp.s64.android.radiobuttonextended.example;
+package jp.s64.android.radiobuttonextended.example.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
-import jp.s64.android.radiobuttonextended.example.activity.SecondActivity;
-import jp.s64.android.radiobuttonextended.example.adapter.ExampleAdapter;
-import jp.s64.android.radiobuttonextended.recycler.adapter.base.Helper;
+import jp.s64.android.radiobuttonextended.example.R;
+import jp.s64.android.radiobuttonextended.example.main.ExampleAdapter;
+import jp.s64.android.radiobuttonextended.example.main.ExampleViewHolder;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String STATE_CHECKED_POSITION = "jp.s64.android.radiobuttonextended.example.MainActivity.STATE_CHECKED_POSITION";
+    private static final String STATE_CHECKED_ID = "jp.s64.android.radiobuttonextended.example.activity.MainActivity.STATE_CHECKED_ID";
 
     private RecyclerView mRecyclerView;
 
     private ExampleAdapter mAdapter;
 
-    private final ExampleAdapter.IListener mListener = new ExampleAdapter.IListener() {
-
+    private final ExampleViewHolder.IListener mListener = new ExampleViewHolder.IListener() {
         @Override
-        public void onCheckChanged(ExampleAdapter.ViewHolder holder, CompoundButton view, boolean checked) {
+        public void onCheckedChange(ExampleViewHolder vh, RadioButton view, boolean isChecked) {
             if (view.isPressed()) {
                 Toast.makeText(
                         MainActivity.this,
                         String.format(
                                 "position=%d; label=%s; isChecked=%b;",
-                                holder.getAdapterPosition(),
+                                vh.getAdapterPosition(),
                                 view.getText(),
-                                checked
+                                isChecked
                         ),
                         Toast.LENGTH_SHORT
                 ).show();
             }
         }
-
     };
 
     @Override
@@ -52,25 +49,17 @@ public class MainActivity extends AppCompatActivity {
         }
         {
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-            mRecyclerView.setAdapter(mAdapter = new ExampleAdapter(
-                    mListener,
-                    new jp.s64.android.radiobuttonextended.recycler.adapter.Helper.AbsLayoutItemResolver<ExampleAdapter.ExampleModel>() {
-
-                        @Nullable
-                        @Override
-                        public ExampleAdapter.ExampleModel resolveRawItemByLayoutPosition(int layoutPosition) {
-                            return mAdapter.get(layoutPosition);
-                        }
-
-                    }
-            ));
+            mRecyclerView.setAdapter(mAdapter = new ExampleAdapter(mListener));
         }
-        for (int i = 0; i < 100; i++) {
-            mAdapter.add(new ExampleAdapter.ExampleModel());
+        {
+            for (int i = 0; i < 100; i++) {
+                mAdapter.getItems().add(new ExampleAdapter.ExampleModel(i));
+            }
+            mAdapter.notifyDataSetChanged();
         }
-        if (savedInstanceState != null) {
-            int position = savedInstanceState.getInt(STATE_CHECKED_POSITION, Helper.POSITION_NOT_CHECKED);
-            mAdapter.setCheckedPosition(position);
+        if (savedInstanceState != null && savedInstanceState.containsKey(STATE_CHECKED_ID)) {
+            long id = savedInstanceState.getLong(STATE_CHECKED_ID);
+            mAdapter.setCheckedId(id);
         }
     }
 
@@ -93,8 +82,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        {
-            outState.putInt(STATE_CHECKED_POSITION, mAdapter.getCheckedItemsPosition());
+        Long checked = mAdapter.getCheckedId();
+        if (checked != null) {
+            outState.putLong(STATE_CHECKED_ID, checked);
         }
     }
 
