@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 import jp.s64.android.radiobuttonextended.example.R;
-import jp.s64.android.radiobuttonextended.recycler.adapter.base.RadioGroupedAdapter;
+import jp.s64.android.radiobuttonextended.recycler.adapter.RadioGroupedAdapter;
 import jp.s64.android.radiobuttonextended.recycler.model.ICheckableModel;
 
 /**

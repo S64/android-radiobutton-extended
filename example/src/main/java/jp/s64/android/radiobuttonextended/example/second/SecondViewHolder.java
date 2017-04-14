@@ -8,8 +8,8 @@ import android.widget.TextView;
 import jp.s64.android.radiobuttonextended.core.widget.CompoundFrameLayout;
 import jp.s64.android.radiobuttonextended.core.widget.RadioFrameLayout;
 import jp.s64.android.radiobuttonextended.example.R;
-import jp.s64.android.radiobuttonextended.recycler.adapter.base.IOnCheckedChangeListener;
-import jp.s64.android.radiobuttonextended.recycler.adapter.base.RadioGroupedAdapter;
+import jp.s64.android.radiobuttonextended.recycler.adapter.IOnCheckedChangeListener;
+import jp.s64.android.radiobuttonextended.recycler.adapter.RadioGroupedAdapter;
 
 /**
  * Created by shuma on 2017/04/14.

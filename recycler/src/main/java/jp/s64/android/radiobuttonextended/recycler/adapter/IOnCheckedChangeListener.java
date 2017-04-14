@@ -1,4 +1,4 @@
-package jp.s64.android.radiobuttonextended.recycler.adapter.base;
+package jp.s64.android.radiobuttonextended.recycler.adapter;
 
 import android.view.View;
 import android.widget.Checkable;

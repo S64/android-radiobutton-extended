@@ -1,4 +1,4 @@
-package jp.s64.android.radiobuttonextended.recycler.adapter.base;
+package jp.s64.android.radiobuttonextended.recycler.adapter;
 
 import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
@@ -62,7 +62,7 @@ public abstract class RadioGroupedAdapter<VH extends RecyclerView.ViewHolder & R
     public void setCheckedId(@Nullable K id) {
         mHelper.setCheckedId(id);
     }
-    
+
     @Nullable
     public K getCheckedId() {
         return mHelper.getCheckedId();
