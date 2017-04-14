@@ -5,12 +5,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Checkable;
 import android.widget.Toast;
 
-import jp.s64.android.radiobuttonextended.core.widget.CompoundFrameLayout;
 import jp.s64.android.radiobuttonextended.example.R;
 import jp.s64.android.radiobuttonextended.example.second.SecondAdapter;
 import jp.s64.android.radiobuttonextended.example.second.SecondViewHolder;
+import jp.s64.android.radiobuttonextended.recycler.adapter.IOnCheckedChangeListener;
 
 /**
  * Created by shuma on 2017/04/10.
@@ -24,9 +26,10 @@ public class SecondActivity extends AppCompatActivity {
 
     private SecondAdapter mAdapter;
 
-    private final SecondViewHolder.IListener mListener = new SecondViewHolder.IListener() {
+    private final IOnCheckedChangeListener<SecondViewHolder, SecondAdapter.SecondModel, Long> mListener = new IOnCheckedChangeListener<SecondViewHolder, SecondAdapter.SecondModel, Long>() {
+
         @Override
-        public void onCheckedChange(SecondViewHolder holder, CompoundFrameLayout view, boolean isChecked) {
+        public <V extends View & Checkable> void onCheckedChange(SecondViewHolder holder, V view, boolean isChecked) {
             if (view.isPressed()) {
                 Toast.makeText(
                         SecondActivity.this,
@@ -40,6 +43,7 @@ public class SecondActivity extends AppCompatActivity {
                 ).show();
             }
         }
+
     };
 
     @Override

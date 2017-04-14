@@ -18,13 +18,11 @@ public class SecondViewHolder extends RecyclerView.ViewHolder implements RadioGr
 
     private final RadioFrameLayout mRadioLayout;
     private final TextView mLabel;
-    private final IListener mListener;
 
-    public SecondViewHolder(View itemView, IListener listener) {
+    public SecondViewHolder(View itemView) {
         super(itemView);
         mRadioLayout = (RadioFrameLayout) itemView.findViewById(R.id.item_container);
         mLabel = (TextView) itemView.findViewById(R.id.label);
-        mListener = listener;
     }
 
     private SecondAdapter.SecondModel mBoundItem;
@@ -46,8 +44,7 @@ public class SecondViewHolder extends RecyclerView.ViewHolder implements RadioGr
 
             @Override
             public void onCheckedChanged(CompoundFrameLayout compoundFrameLayout, boolean checked) {
-                mListener.onCheckedChange(SecondViewHolder.this, mRadioLayout, checked);
-                listener.onCheckedChange(compoundFrameLayout, checked);
+                listener.onCheckedChange(SecondViewHolder.this, compoundFrameLayout, checked);
             }
 
         });
@@ -62,9 +59,4 @@ public class SecondViewHolder extends RecyclerView.ViewHolder implements RadioGr
         return mLabel;
     }
 
-    public interface IListener {
-
-        void onCheckedChange(SecondViewHolder holder, CompoundFrameLayout view, boolean isChecked);
-
-    }
 }

@@ -16,14 +16,12 @@ import jp.s64.android.radiobuttonextended.recycler.adapter.RadioGroupedAdapter;
 public class ExampleViewHolder extends RecyclerView.ViewHolder implements RadioGroupedAdapter.IRadioGroupedViewHolder<ExampleAdapter.ExampleModel, Long> {
 
     private final RadioButton mRadioButton;
-    private final IListener mListener;
 
     private ExampleAdapter.ExampleModel mBoundItem;
 
-    protected ExampleViewHolder(View itemView, IListener listener) {
+    protected ExampleViewHolder(View itemView) {
         super(itemView);
         mRadioButton = (RadioButton) itemView.findViewById(R.id.radiobutton);
-        mListener = listener;
     }
 
     @Nullable
@@ -43,8 +41,7 @@ public class ExampleViewHolder extends RecyclerView.ViewHolder implements RadioG
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mListener.onCheckedChange(ExampleViewHolder.this, mRadioButton, isChecked);
-                listener.onCheckedChange(buttonView, isChecked);
+                listener.onCheckedChange(ExampleViewHolder.this, buttonView, isChecked);
             }
 
         });
@@ -59,9 +56,4 @@ public class ExampleViewHolder extends RecyclerView.ViewHolder implements RadioG
         return mRadioButton;
     }
 
-    public interface IListener {
-
-        void onCheckedChange(ExampleViewHolder vh, RadioButton view, boolean isChecked);
-
-    }
 }

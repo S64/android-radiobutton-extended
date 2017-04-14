@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 import jp.s64.android.radiobuttonextended.example.R;
+import jp.s64.android.radiobuttonextended.recycler.adapter.IOnCheckedChangeListener;
 import jp.s64.android.radiobuttonextended.recycler.adapter.RadioGroupedAdapter;
 import jp.s64.android.radiobuttonextended.recycler.model.ICheckableModel;
 
@@ -20,17 +21,15 @@ import jp.s64.android.radiobuttonextended.recycler.model.ICheckableModel;
 public class SecondAdapter extends RadioGroupedAdapter<SecondViewHolder, SecondAdapter.SecondModel, Long> {
 
     private final List<SecondModel> mItems = new ArrayList<>();
-    private final SecondViewHolder.IListener mListener;
 
-    public SecondAdapter(SecondViewHolder.IListener listener) {
-        super(SecondViewHolder.class);
-        mListener = listener;
+    public SecondAdapter(IOnCheckedChangeListener listener) {
+        super(SecondViewHolder.class, listener);
     }
 
     @Override
     public SecondViewHolder onCreateRadioGroupedViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_second, parent, false);
-        return new SecondViewHolder(view, mListener);
+        return new SecondViewHolder(view);
     }
 
     @Override

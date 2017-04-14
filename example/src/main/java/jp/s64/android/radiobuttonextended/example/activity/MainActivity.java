@@ -7,12 +7,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.RadioButton;
+import android.view.View;
+import android.widget.Checkable;
 import android.widget.Toast;
 
 import jp.s64.android.radiobuttonextended.example.R;
 import jp.s64.android.radiobuttonextended.example.main.ExampleAdapter;
 import jp.s64.android.radiobuttonextended.example.main.ExampleViewHolder;
+import jp.s64.android.radiobuttonextended.recycler.adapter.IOnCheckedChangeListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,16 +24,16 @@ public class MainActivity extends AppCompatActivity {
 
     private ExampleAdapter mAdapter;
 
-    private final ExampleViewHolder.IListener mListener = new ExampleViewHolder.IListener() {
+    private final IOnCheckedChangeListener<ExampleViewHolder, ExampleAdapter.ExampleModel, Long> mListener = new IOnCheckedChangeListener<ExampleViewHolder, ExampleAdapter.ExampleModel, Long>() {
         @Override
-        public void onCheckedChange(ExampleViewHolder vh, RadioButton view, boolean isChecked) {
+        public <V extends View & Checkable> void onCheckedChange(ExampleViewHolder vh, V view, boolean isChecked) {
             if (view.isPressed()) {
                 Toast.makeText(
                         MainActivity.this,
                         String.format(
                                 "position=%d; label=%s; isChecked=%b;",
                                 vh.getAdapterPosition(),
-                                view.getText(),
+                                vh.getRadioButton().getText(),
                                 isChecked
                         ),
                         Toast.LENGTH_SHORT
