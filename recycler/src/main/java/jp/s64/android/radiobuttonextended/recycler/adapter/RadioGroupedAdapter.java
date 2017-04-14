@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Checkable;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,8 +19,8 @@ public abstract class RadioGroupedAdapter<VH extends RecyclerView.ViewHolder & R
 
     private final Helper<VH, T, K> mHelper;
 
-    public RadioGroupedAdapter(Class<? extends VH> viewHolderClass) {
-        mHelper = new Helper<>(viewHolderClass);
+    public RadioGroupedAdapter(Class<? extends VH> viewHolderClass, IOnCheckedChangeListener listener) {
+        mHelper = new Helper<>(viewHolderClass, listener);
     }
 
     @Override
@@ -72,12 +71,14 @@ public abstract class RadioGroupedAdapter<VH extends RecyclerView.ViewHolder & R
 
         private final Class<? extends VH> mViewHolderClass;
         private final Set<RecyclerView> mAttachedRecyclers = new HashSet<>();
+        private final IOnCheckedChangeListener mListener;
 
         @Nullable
         private K mCheckedId = null;
 
-        public Helper(Class<? extends VH> viewHolderClass) {
+        public Helper(Class<? extends VH> viewHolderClass, IOnCheckedChangeListener listener) {
             mViewHolderClass = viewHolderClass;
+            mListener = listener;
         }
 
         public void onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -89,12 +90,15 @@ public abstract class RadioGroupedAdapter<VH extends RecyclerView.ViewHolder & R
 
             {
                 holder.setCheckedChangeListener(new IOnCheckedChangeListener() {
+
                     @Override
-                    public <V extends View & Checkable> void onCheckedChange(V checkable, boolean isChecked) {
+                    public void onCheckedChange(RecyclerView.ViewHolder holder, View checkable, boolean isChecked) {
+                        mListener.onCheckedChange(holder, checkable, isChecked);
                         if (isChecked) {
                             Helper.this.setCheckedId(item.getId());
                         }
                     }
+
                 });
             }
 
