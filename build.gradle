@@ -1,3 +1,6 @@
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
@@ -8,12 +11,28 @@ buildscript {
         target_sdk_version = 25
         compile_sdk_version = 25
         build_tools_version = '25.0.2'
+
+        artifact_group = 'jp.s64.android.radiobuttonextended'
+        site_url = 'https://github.com/S64/android-radiobutton-extended'
+        git_url = 'https://github.com/S64/android-radiobutton-extended.git'
+        issues_url = 'https://github.com/S64/android-radiobutton-extended/issues'
+        shared_labels = ['aar', 'android']
+        default_configurations = ['archives']
+        default_repo = 'maven'
+        default_licenses = ['MIT']
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        bintray_user = properties.getProperty('bintray.user')
+        bintray_api_key = properties.getProperty('bintray.api_key')
     }
     repositories {
         jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
     }
 }
 
@@ -25,4 +44,9 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+def toIsoDateFormat(Date date) {
+    DateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZ")
+    return isoFormat.format(date)
 }

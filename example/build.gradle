@@ -1,5 +1,11 @@
 apply plugin: 'com.android.application'
 
+repositories {
+    maven {
+        url "http://dl.bintray.com/s64/maven"
+    }
+}
+
 android {
     compileSdkVersion compile_sdk_version
     buildToolsVersion build_tools_version
@@ -29,8 +35,8 @@ dependencies {
     })
 
     compile "com.android.support:appcompat-v7:${support_library_version}"
-    compile project(':core')
-    compile project(':recycler')
+    compile "jp.s64.android.radiobuttonextended:core:${version_name}"
+    compile "jp.s64.android.radiobuttonextended:recycler:${version_name}"
 
     testCompile 'junit:junit:4.12'
 }
