@@ -3,6 +3,7 @@ package jp.s64.android.radiobuttonextended.example.second;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -62,40 +63,47 @@ public class SecondAdapter extends RadioGroupedAdapter<SecondViewHolder, Long> {
             setDefaults(holder, position);
         }
         {
-            MyPayload item = null;
+            MyPayload payload = null;
 
-            for (Object payload : payloads) {
-                if (payload != null && payload instanceof MyPayload) {
-                    item = (MyPayload) payload;
+            for (Object itrPayload : payloads) {
+                if (itrPayload != null && itrPayload instanceof MyPayload) {
+                    payload = (MyPayload) itrPayload;
                     break;
                 }
             }
 
-            if (item != null) {
-                {
-                    holder.getIcon().setVisibility(View.VISIBLE);
+            if (payload != null) {
+                ViewPropertyAnimatorCompat animator = ViewCompat
+                        .animate(holder.getIcon())
+                        .setInterpolator(new LinearOutSlowInInterpolator())
+                        .setDuration(500);
+
+                int diff = payload.calcDiffY();
+
+                if (diff == 0) {
+                    ViewCompat.setTranslationX(holder.getIcon(), holder.getIcon().getMeasuredWidth() * -1);
+                    animator = animator
+                            .translationX(0);
+                } else {
+                    ViewCompat.setTranslationY(holder.getIcon(), diff);
+                    animator = animator
+                            .translationY(0);
                 }
-                {
-                    ViewCompat.setTranslationY(holder.getIcon(), item.calcDiffY());
-                    ViewCompat.animate(holder.getIcon())
-                            .translationY(0)
-                            .setDuration(500)
-                            .setInterpolator(new LinearOutSlowInInterpolator())
-                            .start();
-                }
-            } else {
-                holder.getIcon().setVisibility(View.INVISIBLE);
+
+                animator.start();
             }
         }
     }
 
     protected void setDefaults(SecondViewHolder holder, int position) {
+        SecondModel item = mItems.get(position);
         {
-            holder.setRadioItem(mItems.get(position).getId());
+            holder.setRadioItem(item.getId());
             holder.getLabel().setText(generateLabel(position, holder.getUuid()));
         }
+        int visibility = getCheckedId() == item.getId() ? View.VISIBLE : View.INVISIBLE;
         {
-            holder.getIcon().setVisibility(View.INVISIBLE);
+            holder.getIcon().setVisibility(visibility);
         }
     }
 
