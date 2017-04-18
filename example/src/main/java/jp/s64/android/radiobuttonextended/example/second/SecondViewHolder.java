@@ -3,6 +3,7 @@ package jp.s64.android.radiobuttonextended.example.second;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.UUID;
@@ -22,11 +23,13 @@ public class SecondViewHolder extends RecyclerView.ViewHolder implements RadioGr
 
     private final RadioFrameLayout mRadioLayout;
     private final TextView mLabel;
+    private final ImageView mIcon;
 
     public SecondViewHolder(View itemView) {
         super(itemView);
         mRadioLayout = (RadioFrameLayout) itemView.findViewById(R.id.item_container);
         mLabel = (TextView) itemView.findViewById(R.id.label);
+        mIcon = (ImageView) itemView.findViewById(R.id.icon);
     }
 
     private SecondAdapter.SecondModel mBoundItem;
@@ -65,6 +68,10 @@ public class SecondViewHolder extends RecyclerView.ViewHolder implements RadioGr
 
     public TextView getLabel() {
         return mLabel;
+    }
+
+    public ImageView getIcon() {
+        return mIcon;
     }
 
 }
