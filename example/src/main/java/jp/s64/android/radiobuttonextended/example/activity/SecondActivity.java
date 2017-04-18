@@ -1,13 +1,17 @@
 package jp.s64.android.radiobuttonextended.example.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Checkable;
 import android.widget.Toast;
+
+import java.util.List;
 
 import jp.s64.android.radiobuttonextended.example.R;
 import jp.s64.android.radiobuttonextended.example.second.SecondAdapter;
@@ -54,6 +58,19 @@ public class SecondActivity extends AppCompatActivity {
             mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
         }
         {
+            mRecyclerView.setItemAnimator(new DefaultItemAnimator() {
+                @Override
+
+                public boolean canReuseUpdatedViewHolder(@NonNull RecyclerView.ViewHolder viewHolder) {
+                    return true;
+                }
+
+                @Override
+                public boolean canReuseUpdatedViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, @NonNull List<Object> payloads) {
+                    return true;
+                }
+
+            });
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
             mRecyclerView.setAdapter(mAdapter = new SecondAdapter(mListener));
         }

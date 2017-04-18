@@ -23,7 +23,7 @@ public class ExampleAdapter extends RadioGroupedAdapter<ExampleViewHolder, Examp
     private final List<ExampleModel> mItems = new ArrayList<>();
 
     public ExampleAdapter(IOnCheckedChangeListener listener) {
-        super(ExampleViewHolder.class, listener);
+        super(ExampleViewHolder.class, listener, new PayloadGenerator());
     }
 
     @Override
@@ -35,11 +35,21 @@ public class ExampleAdapter extends RadioGroupedAdapter<ExampleViewHolder, Examp
     @Override
     public void onBindRadioGroupedViewHolder(ExampleViewHolder holder, int position) {
         holder.setBoundItem(mItems.get(position));
-        holder.getRadioButton().setText(String.format(
+        holder.getRadioButton().setText(generateLabel(position));
+    }
+
+    @Override
+    public void onBindRadioGroupedViewHolder(ExampleViewHolder holder, int position, List<Object> payloads) {
+        holder.setBoundItem(mItems.get(position));
+        holder.getRadioButton().setText(generateLabel(position));
+    }
+
+    protected static String generateLabel(int adapterPosition) {
+        return String.format(
                 "position = %d; (%s)",
-                position,
+                adapterPosition,
                 UUID.randomUUID().toString()
-        ));
+        );
     }
 
     @Override
@@ -63,6 +73,21 @@ public class ExampleAdapter extends RadioGroupedAdapter<ExampleViewHolder, Examp
         @Override
         public Long getId() {
             return id;
+        }
+
+    }
+
+    protected static class PayloadGenerator implements Helper.IPayloadGenerator<ExampleViewHolder, ExampleModel, Long> {
+
+
+        @Override
+        public Object onCheck(TargetItem<ExampleViewHolder, ExampleModel, Long> item) {
+            return null;
+        }
+
+        @Override
+        public Object onUncheck(TargetItem<ExampleViewHolder, ExampleModel, Long> item) {
+            return null;
         }
 
     }

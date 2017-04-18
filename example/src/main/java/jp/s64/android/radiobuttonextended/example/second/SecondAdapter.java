@@ -23,7 +23,7 @@ public class SecondAdapter extends RadioGroupedAdapter<SecondViewHolder, SecondA
     private final List<SecondModel> mItems = new ArrayList<>();
 
     public SecondAdapter(IOnCheckedChangeListener listener) {
-        super(SecondViewHolder.class, listener);
+        super(SecondViewHolder.class, listener, new PayloadGenerator());
     }
 
     @Override
@@ -35,11 +35,13 @@ public class SecondAdapter extends RadioGroupedAdapter<SecondViewHolder, SecondA
     @Override
     public void onBindRadioGroupedViewHolder(SecondViewHolder holder, int position) {
         holder.setBoundItem(mItems.get(position));
-        holder.getLabel().setText(String.format(
-                "position = %d; (%s)",
-                position,
-                UUID.randomUUID().toString()
-        ));
+        holder.getLabel().setText(generateLabel(position));
+    }
+
+    @Override
+    public void onBindRadioGroupedViewHolder(SecondViewHolder holder, int position, List<Object> payloads) {
+        holder.setBoundItem(mItems.get(position));
+        holder.getLabel().setText(generateLabel(position));
     }
 
     @Override
@@ -49,6 +51,14 @@ public class SecondAdapter extends RadioGroupedAdapter<SecondViewHolder, SecondA
 
     public List<SecondModel> getItems() {
         return mItems;
+    }
+
+    protected static String generateLabel(int adapterPosition) {
+        return String.format(
+                "position = %d; (%s)",
+                adapterPosition,
+                UUID.randomUUID().toString()
+        );
     }
 
     public static class SecondModel implements ICheckableModel<Long> {
@@ -63,6 +73,20 @@ public class SecondAdapter extends RadioGroupedAdapter<SecondViewHolder, SecondA
         @Override
         public Long getId() {
             return id;
+        }
+
+    }
+
+    protected static class PayloadGenerator implements Helper.IPayloadGenerator<SecondViewHolder, SecondModel, Long> {
+
+        @Override
+        public Object onCheck(TargetItem<SecondViewHolder, SecondModel, Long> item) {
+            return null;
+        }
+
+        @Override
+        public Object onUncheck(TargetItem<SecondViewHolder, SecondModel, Long> item) {
+            return null;
         }
 
     }
