@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.UUID;
+
 import jp.s64.android.radiobuttonextended.core.widget.CompoundFrameLayout;
 import jp.s64.android.radiobuttonextended.core.widget.RadioFrameLayout;
 import jp.s64.android.radiobuttonextended.example.R;
@@ -16,6 +18,8 @@ import jp.s64.android.radiobuttonextended.recycler.adapter.RadioGroupedAdapter;
  */
 public class SecondViewHolder extends RecyclerView.ViewHolder implements RadioGroupedAdapter.IRadioGroupedViewHolder<SecondAdapter.SecondModel, Long> {
 
+    private final UUID mInstanceUuid = UUID.randomUUID();
+
     private final RadioFrameLayout mRadioLayout;
     private final TextView mLabel;
 
@@ -26,6 +30,10 @@ public class SecondViewHolder extends RecyclerView.ViewHolder implements RadioGr
     }
 
     private SecondAdapter.SecondModel mBoundItem;
+
+    public UUID getUuid() {
+        return mInstanceUuid;
+    }
 
     @Nullable
     @Override

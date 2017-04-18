@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 
+import java.util.UUID;
+
 import jp.s64.android.radiobuttonextended.example.R;
 import jp.s64.android.radiobuttonextended.recycler.adapter.IOnCheckedChangeListener;
 import jp.s64.android.radiobuttonextended.recycler.adapter.RadioGroupedAdapter;
@@ -15,6 +17,8 @@ import jp.s64.android.radiobuttonextended.recycler.adapter.RadioGroupedAdapter;
  */
 public class ExampleViewHolder extends RecyclerView.ViewHolder implements RadioGroupedAdapter.IRadioGroupedViewHolder<ExampleAdapter.ExampleModel, Long> {
 
+    private final UUID mInstanceUuid = UUID.randomUUID();
+
     private final RadioButton mRadioButton;
 
     private ExampleAdapter.ExampleModel mBoundItem;
@@ -22,6 +26,10 @@ public class ExampleViewHolder extends RecyclerView.ViewHolder implements RadioG
     protected ExampleViewHolder(View itemView) {
         super(itemView);
         mRadioButton = (RadioButton) itemView.findViewById(R.id.radiobutton);
+    }
+
+    public UUID getUuid() {
+        return mInstanceUuid;
     }
 
     @Nullable

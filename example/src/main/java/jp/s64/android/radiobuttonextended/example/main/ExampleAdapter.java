@@ -35,20 +35,20 @@ public class ExampleAdapter extends RadioGroupedAdapter<ExampleViewHolder, Examp
     @Override
     public void onBindRadioGroupedViewHolder(ExampleViewHolder holder, int position) {
         holder.setBoundItem(mItems.get(position));
-        holder.getRadioButton().setText(generateLabel(position));
+        holder.getRadioButton().setText(generateLabel(position, holder.getUuid()));
     }
 
     @Override
     public void onBindRadioGroupedViewHolder(ExampleViewHolder holder, int position, List<Object> payloads) {
         holder.setBoundItem(mItems.get(position));
-        holder.getRadioButton().setText(generateLabel(position));
+        holder.getRadioButton().setText(generateLabel(position, holder.getUuid()));
     }
 
-    protected static String generateLabel(int adapterPosition) {
+    protected static String generateLabel(int adapterPosition, UUID uuid) {
         return String.format(
                 "position = %d; (%s)",
                 adapterPosition,
-                UUID.randomUUID().toString()
+                uuid.toString()
         );
     }
 

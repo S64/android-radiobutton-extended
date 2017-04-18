@@ -35,13 +35,13 @@ public class SecondAdapter extends RadioGroupedAdapter<SecondViewHolder, SecondA
     @Override
     public void onBindRadioGroupedViewHolder(SecondViewHolder holder, int position) {
         holder.setBoundItem(mItems.get(position));
-        holder.getLabel().setText(generateLabel(position));
+        holder.getLabel().setText(generateLabel(position, holder.getUuid()));
     }
 
     @Override
     public void onBindRadioGroupedViewHolder(SecondViewHolder holder, int position, List<Object> payloads) {
         holder.setBoundItem(mItems.get(position));
-        holder.getLabel().setText(generateLabel(position));
+        holder.getLabel().setText(generateLabel(position, holder.getUuid()));
     }
 
     @Override
@@ -53,11 +53,11 @@ public class SecondAdapter extends RadioGroupedAdapter<SecondViewHolder, SecondA
         return mItems;
     }
 
-    protected static String generateLabel(int adapterPosition) {
+    protected static String generateLabel(int adapterPosition, UUID uuid) {
         return String.format(
                 "position = %d; (%s)",
                 adapterPosition,
-                UUID.randomUUID().toString()
+                uuid.toString()
         );
     }
 
