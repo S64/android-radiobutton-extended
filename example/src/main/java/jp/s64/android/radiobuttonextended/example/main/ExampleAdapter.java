@@ -12,13 +12,12 @@ import java.util.UUID;
 import jp.s64.android.radiobuttonextended.example.R;
 import jp.s64.android.radiobuttonextended.recycler.adapter.IOnCheckedChangeListener;
 import jp.s64.android.radiobuttonextended.recycler.adapter.RadioGroupedAdapter;
-import jp.s64.android.radiobuttonextended.recycler.model.ICheckableModel;
 
 /**
  * Created by shuma on 2017/04/14.
  */
 
-public class ExampleAdapter extends RadioGroupedAdapter<ExampleViewHolder, ExampleAdapter.ExampleModel, Long> {
+public class ExampleAdapter extends RadioGroupedAdapter<ExampleViewHolder, Long> {
 
     private final List<ExampleModel> mItems = new ArrayList<>();
 
@@ -34,13 +33,13 @@ public class ExampleAdapter extends RadioGroupedAdapter<ExampleViewHolder, Examp
 
     @Override
     public void onBindRadioGroupedViewHolder(ExampleViewHolder holder, int position) {
-        holder.setBoundItem(mItems.get(position));
+        holder.setRadioItem(mItems.get(position).getId());
         holder.getRadioButton().setText(generateLabel(position, holder.getUuid()));
     }
 
     @Override
     public void onBindRadioGroupedViewHolder(ExampleViewHolder holder, int position, List<Object> payloads) {
-        holder.setBoundItem(mItems.get(position));
+        holder.setRadioItem(mItems.get(position).getId());
         holder.getRadioButton().setText(generateLabel(position, holder.getUuid()));
     }
 
@@ -61,7 +60,7 @@ public class ExampleAdapter extends RadioGroupedAdapter<ExampleViewHolder, Examp
         return mItems;
     }
 
-    public static class ExampleModel implements ICheckableModel<Long> {
+    public static class ExampleModel {
 
         private long id;
 
@@ -70,23 +69,21 @@ public class ExampleAdapter extends RadioGroupedAdapter<ExampleViewHolder, Examp
         }
 
         @NonNull
-        @Override
         public Long getId() {
             return id;
         }
 
     }
 
-    protected static class PayloadGenerator implements Helper.IPayloadGenerator<ExampleViewHolder, ExampleModel, Long> {
-
+    protected static class PayloadGenerator implements Helper.IPayloadGenerator<ExampleViewHolder, Long> {
 
         @Override
-        public Object onCheck(TargetItem<ExampleViewHolder, ExampleModel, Long> item) {
+        public Object onCheck(TargetItem<ExampleViewHolder, Long> item) {
             return null;
         }
 
         @Override
-        public Object onUncheck(TargetItem<ExampleViewHolder, ExampleModel, Long> item) {
+        public Object onUncheck(TargetItem<ExampleViewHolder, Long> item) {
             return null;
         }
 

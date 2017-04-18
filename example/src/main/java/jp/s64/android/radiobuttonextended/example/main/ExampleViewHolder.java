@@ -15,13 +15,14 @@ import jp.s64.android.radiobuttonextended.recycler.adapter.RadioGroupedAdapter;
 /**
  * Created by shuma on 2017/04/14.
  */
-public class ExampleViewHolder extends RecyclerView.ViewHolder implements RadioGroupedAdapter.IRadioGroupedViewHolder<ExampleAdapter.ExampleModel, Long> {
+public class ExampleViewHolder extends RecyclerView.ViewHolder implements RadioGroupedAdapter.IRadioGroupedViewHolder<Long> {
 
     private final UUID mInstanceUuid = UUID.randomUUID();
 
     private final RadioButton mRadioButton;
 
-    private ExampleAdapter.ExampleModel mBoundItem;
+    @Nullable
+    private Long mRadioKey;
 
     protected ExampleViewHolder(View itemView) {
         super(itemView);
@@ -34,13 +35,13 @@ public class ExampleViewHolder extends RecyclerView.ViewHolder implements RadioG
 
     @Nullable
     @Override
-    public ExampleAdapter.ExampleModel getBoundItem() {
-        return mBoundItem;
+    public Long getRadioKey() {
+        return mRadioKey;
     }
 
     @Override
-    public void setBoundItem(@Nullable ExampleAdapter.ExampleModel item) {
-        mBoundItem = item;
+    public void setRadioItem(@Nullable Long item) {
+        mRadioKey = item;
     }
 
     @Override

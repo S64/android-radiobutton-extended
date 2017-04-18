@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ExampleAdapter mAdapter;
 
-    private final IOnCheckedChangeListener<ExampleViewHolder, ExampleAdapter.ExampleModel, Long> mListener = new IOnCheckedChangeListener<ExampleViewHolder, ExampleAdapter.ExampleModel, Long>() {
+    private final IOnCheckedChangeListener<ExampleViewHolder, Long> mListener = new IOnCheckedChangeListener<ExampleViewHolder, Long>() {
         @Override
         public <V extends View & Checkable> void onCheckedChange(ExampleViewHolder vh, V view, boolean isChecked) {
             if (view.isPressed()) {

@@ -18,13 +18,12 @@ import java.util.UUID;
 import jp.s64.android.radiobuttonextended.example.R;
 import jp.s64.android.radiobuttonextended.recycler.adapter.IOnCheckedChangeListener;
 import jp.s64.android.radiobuttonextended.recycler.adapter.RadioGroupedAdapter;
-import jp.s64.android.radiobuttonextended.recycler.model.ICheckableModel;
 
 /**
  * Created by shuma on 2017/04/14.
  */
 
-public class SecondAdapter extends RadioGroupedAdapter<SecondViewHolder, SecondAdapter.SecondModel, Long> {
+public class SecondAdapter extends RadioGroupedAdapter<SecondViewHolder, Long> {
 
     private final Set<RecyclerView> mAttachedRecyclers = new HashSet<>();
 
@@ -92,7 +91,7 @@ public class SecondAdapter extends RadioGroupedAdapter<SecondViewHolder, SecondA
 
     protected void setDefaults(SecondViewHolder holder, int position) {
         {
-            holder.setBoundItem(mItems.get(position));
+            holder.setRadioItem(mItems.get(position).getId());
             holder.getLabel().setText(generateLabel(position, holder.getUuid()));
         }
         {
@@ -117,7 +116,7 @@ public class SecondAdapter extends RadioGroupedAdapter<SecondViewHolder, SecondA
         );
     }
 
-    public static class SecondModel implements ICheckableModel<Long> {
+    public static class SecondModel {
 
         private final long id;
 
@@ -126,17 +125,16 @@ public class SecondAdapter extends RadioGroupedAdapter<SecondViewHolder, SecondA
         }
 
         @NonNull
-        @Override
         public Long getId() {
             return id;
         }
 
     }
 
-    protected static class PayloadGenerator implements Helper.IPayloadGenerator<SecondViewHolder, SecondModel, Long> {
+    protected static class PayloadGenerator implements Helper.IPayloadGenerator<SecondViewHolder, Long> {
 
         @Override
-        public Object onCheck(TargetItem<SecondViewHolder, SecondModel, Long> item) {
+        public Object onCheck(TargetItem<SecondViewHolder, Long> item) {
             final Integer oldY, newY;
 
             {
@@ -157,7 +155,7 @@ public class SecondAdapter extends RadioGroupedAdapter<SecondViewHolder, SecondA
         }
 
         @Override
-        public Object onUncheck(TargetItem<SecondViewHolder, SecondModel, Long> item) {
+        public Object onUncheck(TargetItem<SecondViewHolder, Long> item) {
             return null;
         }
 

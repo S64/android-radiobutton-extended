@@ -30,7 +30,7 @@ public class SecondActivity extends AppCompatActivity {
 
     private SecondAdapter mAdapter;
 
-    private final IOnCheckedChangeListener<SecondViewHolder, SecondAdapter.SecondModel, Long> mListener = new IOnCheckedChangeListener<SecondViewHolder, SecondAdapter.SecondModel, Long>() {
+    private final IOnCheckedChangeListener<SecondViewHolder, Long> mListener = new IOnCheckedChangeListener<SecondViewHolder, Long>() {
 
         @Override
         public <V extends View & Checkable> void onCheckedChange(SecondViewHolder holder, V view, boolean isChecked) {

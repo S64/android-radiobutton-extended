@@ -17,7 +17,7 @@ import jp.s64.android.radiobuttonextended.recycler.adapter.RadioGroupedAdapter;
 /**
  * Created by shuma on 2017/04/14.
  */
-public class SecondViewHolder extends RecyclerView.ViewHolder implements RadioGroupedAdapter.IRadioGroupedViewHolder<SecondAdapter.SecondModel, Long> {
+public class SecondViewHolder extends RecyclerView.ViewHolder implements RadioGroupedAdapter.IRadioGroupedViewHolder<Long> {
 
     private final UUID mInstanceUuid = UUID.randomUUID();
 
@@ -32,7 +32,8 @@ public class SecondViewHolder extends RecyclerView.ViewHolder implements RadioGr
         mIcon = (ImageView) itemView.findViewById(R.id.icon);
     }
 
-    private SecondAdapter.SecondModel mBoundItem;
+    @Nullable
+    private Long mRadioKey;
 
     public UUID getUuid() {
         return mInstanceUuid;
@@ -40,13 +41,13 @@ public class SecondViewHolder extends RecyclerView.ViewHolder implements RadioGr
 
     @Nullable
     @Override
-    public SecondAdapter.SecondModel getBoundItem() {
-        return mBoundItem;
+    public Long getRadioKey() {
+        return mRadioKey;
     }
 
     @Override
-    public void setBoundItem(@Nullable SecondAdapter.SecondModel item) {
-        mBoundItem = item;
+    public void setRadioItem(@Nullable Long item) {
+        mRadioKey = item;
     }
 
     @Override
