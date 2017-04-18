@@ -15,7 +15,7 @@ import jp.s64.android.radiobuttonextended.recycler.adapter.RadioGroupedAdapter;
 /**
  * Created by shuma on 2017/04/14.
  */
-public class ExampleViewHolder extends RecyclerView.ViewHolder implements RadioGroupedAdapter.IRadioGroupedViewHolder<Long> {
+public class ExampleViewHolder extends RecyclerView.ViewHolder implements RadioGroupedAdapter.IRadioGroupedViewHolder<ExampleViewHolder, Long> {
 
     private final UUID mInstanceUuid = UUID.randomUUID();
 
@@ -45,7 +45,7 @@ public class ExampleViewHolder extends RecyclerView.ViewHolder implements RadioG
     }
 
     @Override
-    public void setCheckedChangeListener(final IOnCheckedChangeListener listener) {
+    public void setCheckedChangeListener(final IOnCheckedChangeListener<ExampleViewHolder, Long> listener) {
         mRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override

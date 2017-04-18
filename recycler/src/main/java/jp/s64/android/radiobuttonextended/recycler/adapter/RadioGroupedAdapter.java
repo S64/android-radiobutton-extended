@@ -15,7 +15,7 @@ import java.util.Set;
  * Created by shuma on 2017/04/14.
  */
 
-public abstract class RadioGroupedAdapter<VH extends RecyclerView.ViewHolder & RadioGroupedAdapter.IRadioGroupedViewHolder<K>, K extends Comparable<K>> extends RecyclerView.Adapter<VH> {
+public abstract class RadioGroupedAdapter<VH extends RecyclerView.ViewHolder & RadioGroupedAdapter.IRadioGroupedViewHolder<VH, K>, K extends Comparable<K>> extends RecyclerView.Adapter<VH> {
 
     private final Helper<VH, K> mHelper;
 
@@ -82,7 +82,7 @@ public abstract class RadioGroupedAdapter<VH extends RecyclerView.ViewHolder & R
         return mHelper.getPayloadGenerator();
     }
 
-    public static class Helper<VH extends RecyclerView.ViewHolder & IRadioGroupedViewHolder<K>, K> {
+    public static class Helper<VH extends RecyclerView.ViewHolder & IRadioGroupedViewHolder<VH, K>, K> {
 
         private final Class<? extends VH> mViewHolderClass;
         private final Set<RecyclerView> mAttachedRecyclers = new HashSet<>();
@@ -195,13 +195,13 @@ public abstract class RadioGroupedAdapter<VH extends RecyclerView.ViewHolder & R
             return mPayloadGenerator;
         }
 
-        public interface IPayloadGenerator<VH extends RecyclerView.ViewHolder & RadioGroupedAdapter.IRadioGroupedViewHolder<K>, K> {
+        public interface IPayloadGenerator<VH extends RecyclerView.ViewHolder & RadioGroupedAdapter.IRadioGroupedViewHolder<VH, K>, K> {
 
             Object onCheck(TargetItem<VH, K> item);
 
             Object onUncheck(TargetItem<VH, K> item);
 
-            class Item<VH extends RecyclerView.ViewHolder & RadioGroupedAdapter.IRadioGroupedViewHolder<K>, K> {
+            class Item<VH extends RecyclerView.ViewHolder & RadioGroupedAdapter.IRadioGroupedViewHolder<VH, K>, K> {
 
                 private final VH viewHolder;
 
@@ -215,7 +215,7 @@ public abstract class RadioGroupedAdapter<VH extends RecyclerView.ViewHolder & R
 
             }
 
-            class TargetItem<VH extends RecyclerView.ViewHolder & RadioGroupedAdapter.IRadioGroupedViewHolder<K>, K> extends Item<VH, K> {
+            class TargetItem<VH extends RecyclerView.ViewHolder & RadioGroupedAdapter.IRadioGroupedViewHolder<VH, K>, K> extends Item<VH, K> {
 
                 @Nullable
                 private final Item<VH, K> pair;
@@ -244,14 +244,14 @@ public abstract class RadioGroupedAdapter<VH extends RecyclerView.ViewHolder & R
 
     }
 
-    public interface IRadioGroupedViewHolder<K> {
+    public interface IRadioGroupedViewHolder<VH extends RecyclerView.ViewHolder & IRadioGroupedViewHolder<VH, K>, K> {
 
         @Nullable
         K getRadioKey();
 
         void setRadioItem(@Nullable K item);
 
-        void setCheckedChangeListener(IOnCheckedChangeListener listener);
+        void setCheckedChangeListener(IOnCheckedChangeListener<VH, K> listener);
 
         void setIsChecked(boolean isChecked);
 

@@ -7,7 +7,7 @@ import android.widget.Checkable;
 /**
  * Created by shuma on 2017/04/11.
  */
-public interface IOnCheckedChangeListener<VH extends RecyclerView.ViewHolder & RadioGroupedAdapter.IRadioGroupedViewHolder<K>, K> {
+public interface IOnCheckedChangeListener<VH extends RecyclerView.ViewHolder & RadioGroupedAdapter.IRadioGroupedViewHolder<VH, K>, K> {
 
     <V extends View & Checkable> void onCheckedChange(VH holder, V checkable, boolean isChecked);
 
