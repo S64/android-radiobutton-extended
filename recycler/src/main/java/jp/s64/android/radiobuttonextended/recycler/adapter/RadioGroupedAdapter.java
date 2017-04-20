@@ -156,6 +156,8 @@ public abstract class RadioGroupedAdapter<VH extends RecyclerView.ViewHolder & R
                                 oldItems.add(new IPayloadGenerator.Item<>(holder));
                             }
                         }
+                    } else if (org == null && !recycler.isComputingLayout()) {
+                        recycler.getAdapter().notifyItemChanged(adapterPosition);
                     }
                 }
                 {
