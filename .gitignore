@@ -8,3 +8,6 @@
 /captures
 .externalNativeBuild
 .idea
+
+/example/google-services.json
+

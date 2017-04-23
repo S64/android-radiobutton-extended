@@ -8,6 +8,7 @@ buildscript {
         version_name = '0.0.3'
         version_code = 1
         support_library_version = '25.0.1'
+        firebase_library_version = '10.0.1'
         target_sdk_version = 25
         compile_sdk_version = 25
         build_tools_version = '25.0.2'
@@ -37,6 +38,8 @@ buildscript {
         classpath 'com.android.tools.build:gradle:2.3.0'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        classpath 'com.google.gms:google-services:3.0.0'
+        classpath 'com.google.firebase:firebase-plugins:1.0.5'
     }
 }
 

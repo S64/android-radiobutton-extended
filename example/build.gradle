@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.firebase.firebase-crash'
 
 repositories {
     maven {
@@ -78,6 +79,8 @@ dependencies {
     compile "com.android.support:recyclerview-v7:${support_library_version}"
     compile "com.android.support:appcompat-v7:${support_library_version}"
 
+    compile "com.google.firebase:firebase-crash:${firebase_library_version}"
+
     compile("jp.s64.android.radiobuttonextended:core:${version_name}") {
         exclude module: 'support-annotations'
     }
@@ -88,3 +91,5 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
 }
+
+apply plugin: 'com.google.gms.google-services'
