@@ -25,6 +25,10 @@ buildscript {
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
         bintray_user = properties.getProperty('bintray.user')
         bintray_api_key = properties.getProperty('bintray.api_key')
+        release_keystore_file = properties.getProperty('release.keystore_file')
+        release_keystore_password = properties.getProperty('release.keystore_password')
+        release_key_alias = properties.getProperty('release.key_alias')
+        release_key_password = properties.getProperty('release.key_password')
     }
     repositories {
         jcenter()
