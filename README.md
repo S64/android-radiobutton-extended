@@ -49,6 +49,10 @@ dependencies {
 
 - [Wantedly Visit](https://play.google.com/store/apps/details?id=com.wantedly.android.visit) & [Intern](https://play.google.com/store/apps/details?id=com.wantedly.android.student)
 
+## Donate
+
+<a href="https://donorbox.org/android-radiobutton-extended"><img src="https://d1iczxrky3cnb2.cloudfront.net/button-small-blue.png"/></a>
+
 ## License
 
 ```
