@@ -6,4 +6,9 @@
         <attr name="clickable" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="CompoundFrameLayoutRadioGroup">
+        <attr name="android:checkedButton" />
+        <attr name="android:orientation" />
+    </declare-styleable>
+
 </resources>
