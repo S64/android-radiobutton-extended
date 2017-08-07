@@ -11,6 +11,7 @@ This is contains below components:
 - CompoundFrameLayout
 - RadioFrameLayout
 - RadioGroupedAdapter
+- CompoundFrameLayoutRadioGroup
 
 Japanese details is available here: [blog.s64.jp](http://blog.s64.jp/entry/publish-android-radiobutton-extended)
 
