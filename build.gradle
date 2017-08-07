@@ -5,8 +5,8 @@ import java.text.SimpleDateFormat
 
 buildscript {
     ext {
-        version_name = '0.1.0'
-        version_code = 1
+        version_name = '0.2.0'
+        version_code = 2
         support_library_version = '25.0.1'
         firebase_library_version = '10.0.1'
         target_sdk_version = 25
