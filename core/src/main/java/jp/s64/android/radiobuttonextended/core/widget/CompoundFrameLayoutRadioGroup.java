@@ -225,7 +225,7 @@ public class CompoundFrameLayoutRadioGroup extends LinearLayout {
             mProtectFromCheckedChange = false;
 
             int id = buttonView.getId();
-            setCheckedId(id);
+            setCheckedId(isChecked ? id : View.NO_ID);
         }
     }
 
