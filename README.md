@@ -12,6 +12,7 @@ This is contains below components:
 - RadioFrameLayout
 - RadioGroupedAdapter
 - CompoundFrameLayoutRadioGroup
+- MultiCheckableAdapter
 
 Japanese details is available here: [blog.s64.jp](http://blog.s64.jp/entry/publish-android-radiobutton-extended)
 
