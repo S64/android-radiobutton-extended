@@ -9,6 +9,7 @@ buildscript {
         version_code = 3
         support_library_version = '25.0.1'
         firebase_library_version = '10.0.1'
+        guava_version = '22.0-android'
         target_sdk_version = 25
         compile_sdk_version = 25
         build_tools_version = '25.0.2'
