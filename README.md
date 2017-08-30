@@ -8,6 +8,7 @@ An example project / library of custom RadioButton widgets.
 
 This is contains below components:
 
+- NonClickableCompoundFrameLayout
 - CompoundFrameLayout
 - RadioFrameLayout
 - RadioGroupedAdapter
