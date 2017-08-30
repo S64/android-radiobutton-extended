@@ -24,7 +24,7 @@ Add following lines to your buildscripts.
 ```groovy
 buildscript {
     ext {
-        radiobutton_extended_version = '0.4.0'
+        radiobutton_extended_version = '0.5.0'
     }
 }
 ```
