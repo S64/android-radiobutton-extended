@@ -25,6 +25,7 @@ import android.widget.TextView;
 import java.util.UUID;
 
 import jp.s64.android.radiobuttonextended.core.widget.CompoundFrameLayout;
+import jp.s64.android.radiobuttonextended.core.widget.NonClickableCompoundFrameLayout;
 import jp.s64.android.radiobuttonextended.core.widget.RadioFrameLayout;
 import jp.s64.android.radiobuttonextended.example.R;
 import jp.s64.android.radiobuttonextended.recycler.adapter.IOnCheckedChangeListener;
@@ -68,7 +69,7 @@ public class SecondViewHolder extends RecyclerView.ViewHolder implements RadioGr
         mRadioLayout.setOnCheckedChangeListener(new CompoundFrameLayout.OnCheckedChangeListener() {
 
             @Override
-            public void onCheckedChanged(CompoundFrameLayout compoundFrameLayout, boolean checked) {
+            public void onCheckedChanged(NonClickableCompoundFrameLayout compoundFrameLayout, boolean checked) {
                 listener.onCheckedChange(SecondViewHolder.this, compoundFrameLayout, checked);
             }
 

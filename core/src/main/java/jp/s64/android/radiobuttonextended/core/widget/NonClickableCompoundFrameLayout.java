@@ -77,8 +77,8 @@ public class NonClickableCompoundFrameLayout extends FrameLayout implements Chec
         );
 
         try {
-            setChecked(a.getBoolean(R.styleable.CompoundFrameLayout_checked, false));
-            setClickable(a.getBoolean(R.styleable.CompoundFrameLayout_clickable, true));
+            setChecked(a.getBoolean(R.styleable.NonClickableCompoundFrameLayout_checked, false));
+            setClickable(a.getBoolean(R.styleable.NonClickableCompoundFrameLayout_clickable, true));
         } finally {
             a.recycle();
         }

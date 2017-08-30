@@ -213,7 +213,9 @@ public class CompoundFrameLayoutRadioGroup extends LinearLayout {
     }
 
     private class CheckedStateTracker implements CompoundFrameLayout.OnCheckedChangeListener {
-        public void onCheckedChanged(CompoundFrameLayout buttonView, boolean isChecked) {
+
+        @Override
+        public void onCheckedChanged(NonClickableCompoundFrameLayout buttonView, boolean isChecked) {
             if (mProtectFromCheckedChange) {
                 return;
             }
@@ -227,6 +229,7 @@ public class CompoundFrameLayoutRadioGroup extends LinearLayout {
             int id = buttonView.getId();
             setCheckedId(isChecked ? id : View.NO_ID);
         }
+
     }
 
     private class PassThroughHierarchyChangeListener implements
